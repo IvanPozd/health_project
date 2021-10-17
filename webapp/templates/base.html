@@ -36,7 +36,8 @@
             {% endif %}
 
             {% if user.is_admin %}
-              <button type="submit" formaction="/admin/create_news"class="btn btn-info">Добавить новость</button>
+              <button type="submit" formaction="/admin/create_news" class="btn btn-info btn-sm">Добавить новость</button>
+              <button type="submit" formaction="{{ url_for('admin.admin')}}" class="btn btn-primary btn-sm">Редактировать новость</button>
             {% endif %}
 
             {% if user.is_authenticated %}

@@ -8,6 +8,27 @@
 
 {% block body%}
 
-{{ text }}
+<h1>{{ title }}</h1>
+
+<div class="row">
+    <div class="col-8">
+      <form action="{{ url_for('admin.redactor') }}" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+          {{ form.redactor_title.label }}
+          {{ form.redactor_title() }}
+        </div> 
+        <div class="mb-3">
+          {{ form.redactor_category.label }}
+          {{ form.redactor_category() }}
+        </div>       
+        <div class="mb-3">
+          {{ form.redactor_text.label }}
+          {{ form.redactor_text(rows='20') }}
+        </div>   
+        {{ form.submit() }}
+      </form>  
+    </div>
+</div>
 
 {% endblock %}
