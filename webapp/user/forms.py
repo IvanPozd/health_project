@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email, EqualTo
 
 
 class LoginForm(FlaskForm):
@@ -11,7 +11,7 @@ class LoginForm(FlaskForm):
     )
 
     email = StringField(
-        "Email", validators=[DataRequired()], render_kw={"class": "form-control"}
+        "Email", validators=[DataRequired(), Email()], render_kw={"class": "form-control"}
     )
 
     password = PasswordField(
@@ -33,7 +33,7 @@ class RegistrationForm(FlaskForm):
     )
 
     email = StringField(
-        "Email", validators=[DataRequired()], render_kw={"class": "form-control"}
+        "Электронная почта", validators=[DataRequired(), Email()], render_kw={"class": "form-control"}
     )
 
     password1 = PasswordField(
@@ -42,7 +42,7 @@ class RegistrationForm(FlaskForm):
 
     password2 = PasswordField(
         "Повторите Пароль",
-        validators=[DataRequired()],
+        validators=[DataRequired(), EqualTo('password1')],
         render_kw={"class": "form-control"},
     )
 
