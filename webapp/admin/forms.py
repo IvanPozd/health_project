@@ -3,16 +3,16 @@ from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
 
-class RedactorForm(FlaskForm):
-    redactor_title = StringField(
+class EditForm(FlaskForm):
+    edit_title = StringField(
         "Заголовок статьи",
         validators=[DataRequired()],
         render_kw={"class": "form-control"},
     )
-    redactor_text = TextAreaField(
+    edit_text = TextAreaField(
         "Текст статьи", validators=[DataRequired()], render_kw={"class": "form-control"}
     )
-    redactor_category = StringField(
+    edit_category = StringField(
         "Категория новости",
         validators=[DataRequired()],
         render_kw={"class": "form-control"},

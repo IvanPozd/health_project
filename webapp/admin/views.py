@@ -1,7 +1,7 @@
 from flask import Blueprint, flash, redirect, url_for, render_template
 from flask_login import current_user
 
-from webapp.admin.forms import RedactorForm
+from webapp.admin.forms import EditForm
 
 from webapp.db import db
 
@@ -21,7 +21,7 @@ def admin():
     page_title = "Панель управления"
     text = "Контент админки"
     title = "Редактирование"
-    form = RedactorForm()
+    form = EditForm()
     return render_template(
         "admin/index.html", page_title=page_title, text=text, user=current_user, form=form, title=title,
     )
@@ -63,22 +63,23 @@ def create_news():
         "admin/create_news.html", page_title=title, form=form, user=current_user
     )
 
-@blueprint.route("/redactoring", methods=["POST"])
+@blueprint.route("/editor", methods=["POST"])
 @admin_required
-def redactor():
-    form = RedactorForm()
+def edit():
+    form = EditForm()
     if form.validate_on_submit():
-        redactor_news = BDConnector.query.filter(
-            BDConnector.title == form.redactor_title.data
+        old_news = BDConnector.query.filter(
+            BDConnector.title == form.edit_title.data
         )
-        redactor_news.delete()
-        redactor_news = BDConnector(
-            title=form.redactor_title.data,
-            category=form.redactor_category.data,
-            text=form.redactor_text.data,
+        old_news.delete()
+        edit_news = BDConnector(
+            title=form.edit_title.data,
+            category=form.edit_category.data,
+            text=form.edit_text.data,
             published=datetime.now(),
                 )
-        db.session.add(redactor_news)
+
+        db.session.add(edit_news)
         db.session.commit()
         flash("Вы успешно отредактировали новость в базе")
         return redirect(url_for("news.index"))

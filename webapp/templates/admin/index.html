@@ -12,19 +12,19 @@
 
 <div class="row">
     <div class="col-8">
-      <form action="{{ url_for('admin.redactor') }}" method="POST">
+      <form action="{{ url_for('admin.edit') }}" method="POST">
         {{ form.hidden_tag() }}
         <div class="mb-3">
-          {{ form.redactor_title.label }}
-          {{ form.redactor_title() }}
+          {{ form.edit_title.label }}
+          {{ form.edit_title() }}
         </div> 
         <div class="mb-3">
-          {{ form.redactor_category.label }}
-          {{ form.redactor_category() }}
+          {{ form.edit_category.label }}
+          {{ form.edit_category() }}
         </div>       
         <div class="mb-3">
-          {{ form.redactor_text.label }}
-          {{ form.redactor_text(rows='20') }}
+          {{ form.edit_text.label }}
+          {{ form.edit_text(rows='20') }}
         </div>   
         {{ form.submit() }}
       </form>  
