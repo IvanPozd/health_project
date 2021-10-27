@@ -8,7 +8,7 @@ def create_and_add_user(username, email, password):
         flash(f"Пользователь с именем {username} уже существует!!!")
     if not user:
         flash(f"Создан пользователь {username}")
-        new_user = User(username=username, email=email, password=password, role='user')
+        new_user = User(username=username, email=email, password=password)
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
