@@ -68,18 +68,10 @@ def create_news():
 def edit():
     form = EditForm()
     if form.validate_on_submit():
-        old_news = BDConnector.query.filter(
-            BDConnector.title == form.edit_title.data
-        )
-        old_news.delete()
-        edit_news = BDConnector(
-            title=form.edit_title.data,
-            category=form.edit_category.data,
-            text=form.edit_text.data,
-            published=datetime.now(),
-                )
-
-        db.session.add(edit_news)
+        db.session.query(BDConnector).update({BDConnector.title: form.edit_title.data}, synchronize_session=False)
+        db.session.query(BDConnector).update({BDConnector.category: form.edit_category.data}, synchronize_session=False)
+        db.session.query(BDConnector).update({BDConnector.text: form.edit_text.data}, synchronize_session=False)
+        db.session.query(BDConnector).update({BDConnector.published: datetime.now()}, synchronize_session=False)
         db.session.commit()
         flash("Вы успешно отредактировали новость в базе")
         return redirect(url_for("news.index"))
