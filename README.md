@@ -5,27 +5,27 @@ HealthProject создавался как проект помогающий Ва
 
 ## Установка
 
-+ 1. Клонируйте репозиторий.
+1. Клонируйте репозиторий.
 
 ```bash
 git clone https://github.com/IvanPozd/health_project.git
 ```
 
-+ 2. Создайте виртуальное окружение.
+2. Создайте виртуальное окружение.
 
 ```bash
 python3 -m venv env
 ```
 
-+ 3. Установите зависимости.
+3. Установите зависимости.
 
 ```bash
 pip install -r requirements.txt
 ```
 
-+ 4. В папке /webapp создайте файл: `config.py`.
+4. В папке /webapp создайте файл: `config.py`.
 
-+ 5. В файле `config.py` создайте следующие переменные:
+5. В файле `config.py` создайте следующие переменные:
 
 ```bash
 from datetime import timedelta
@@ -41,7 +41,7 @@ REMEMBER_COOKIE_DURATION = timedelta(days=5)
 MEDIA_PATH = f"{basedir}/news/parser/images/"
 ```
 
-+ 6. Запустите `celery` командой:
+6. Запустите `celery` командой:
 
 ```bash
 celery -A tasks worker --loglevel=info      #для Linux/MacOs
