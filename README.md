@@ -5,6 +5,6 @@ HealthProject создавался как проект помогающий Ва
 ## Установка
 
 1. Клонируйте репозиторий.
-'''bash
-git clone
-'''
+```bash
+git clone https://github.com/IvanPozd/health_project.git
+```
